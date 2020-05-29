@@ -1,41 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from 'express';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import path from 'path';
+import userRoutes from './routers/userRoutes';
+import dbController from './controller/dbController';
 
-var app = express();
-require('./dbConnect')
-// view engine setup
+const app = express()
+
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(express.static(path.join(__dirname,'public')))
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.get('/',(req,res) => {
+  res.render('index', { title: 'User Profile' });
+})
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use('/user',userRoutes)
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+const port = 8082
+app.listen(port,() => {
+  console.log(`The Express 🚆 🚆 server is working on port ${port}.. 8️⃣ 0️⃣ 8️⃣ 2️⃣`);
+})

@@ -1,111 +1,109 @@
-const mongoose = require('mongoose');
-
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 
 const userProfileSchema = new Schema({
 	user: {
 		type: Schema.Types.ObjectId,
-		ref: 'Users'
+		ref: 'Users',
 	},
 	company: {
-		type: String
+		type: String,
 	},
 	website: {
-		type: String
+		type: String,
 	},
 	location: {
-		type: String
+		type: String,
 	},
 	status: {
 		type: String,
-		required: true
+		required: true,
 	},
 	skills: {
-		type: [ String ],//
-		required: true
+		type: [String], //
+		required: true,
 	},
 	bio: {
-		type: String
+		type: String,
 	},
 	githubusername: {
-		type: String
+		type: String,
 	},
 	experience: [
 		{
 			title: {
 				type: String,
-				required: true
+				required: true,
 			},
 			company: {
 				type: String,
-				required: true
+				required: true,
 			},
 			location: {
-				type: String
+				type: String,
 			},
 			from: {
 				type: Date,
-				required: true
+				required: true,
 			},
 			to: {
-				type: Date
+				type: Date,
 			},
 			current: {
 				type: Boolean,
-				default: false
+				default: false,
 			},
 			description: {
-				type: String
-			}
-		}
+				type: String,
+			},
+		},
 	],
 	education: [
 		{
 			school: {
 				type: String,
-				required: true
+				required: true,
 			},
 			degree: {
 				type: String,
-				required: true
+				required: true,
 			},
 			fieldofstudy: {
-				type: String
+				type: String,
 			},
 			from: {
 				type: Date,
-				required: true
+				required: true,
 			},
 			to: {
 				type: Date,
-				required: true
+				required: true,
 			},
 			current: {
 				type: Boolean,
-				default: false
+				default: false,
 			},
 			description: {
-				type: String
-			}
-		}
+				type: String,
+			},
+		},
 	],
 	social: {
 		youtube: {
-			type: String
+			type: String,
 		},
 		twitter: {
-			type: String
+			type: String,
 		},
 		facebook: {
-			type: String
+			type: String,
 		},
 		linkedin: {
-			type: String
+			type: String,
 		},
 		instagram: {
-			type: String
-		}
-	}
+			type: String,
+		},
+	},
 });
 
-module.exports = mongoose.model('Profile', userProfileSchema, 'profiles');
+export default model('Profile',userProfileSchema,'profiles')

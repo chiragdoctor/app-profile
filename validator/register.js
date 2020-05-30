@@ -1,51 +1,26 @@
-import isEmpty from "./isEmpty"
-import Validator from "validator";
+import { body, validationResult } from "express-validator"
 
+const registerRules = () => {
+  return [
+		body('mobile').isNumeric().isLength({min:10,max:13}).withMessage('Provide mobile number in +911234567890'),
+		body('password','It should be provided').notEmpty().isLength({min:6,max:30}),
+		body('confirmPass', 'Confirm Password is required').notEmpty().isLength({min:6,max:30}),
+		body('firstName').isLength({ min: 3, max: 30 }).withMessage('First name is required'),
+		body('lastName').isLength({ min: 3, max: 30 }).withMessage('First name is required'),
+		body('email',"Give email").notEmpty().isEmail().withMessage('Please provide email in proper formate')
+	]; 
+}
 
-export default function validateRegisterInput(data) {
-  let errors = {}
-  data.firstName = !isEmpty(data.firstName) ? data.firstName : '';
-  data.lastName = !isEmpty(data.lastName) ? data.lastName : '';
-  data.lastName = !isEmpty(data.lastName) ? data.lastName : '';
-  data.mobile = !isEmpty(data.mobile) ? data.mobile : '';
-  data.password = !isEmpty(data.password) ? data.password : '';    
-  data.email = !isEmpty(data.email) ? data.email : '';
-  data.confirmPass = !isEmpty(data.confirmPass) ? data.confirmPass : '';
+const validate = (req, res, next) => {
+  const errors =  validationResult(req)
+  if (errors.isEmpty()) {
+    return next()
+  }
+  const extractedErrors = []
+  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+  return res.json({
+    errors: extractedErrors
+  })
+}
 
-  if (!Validator.isLength(data.firstName,{min: 3, max: 30})) {
-    errors.firstName = 'First name must be between 3 and 30 characters'
-  }
-  if (Validator.isEmpty(data.firstName)) {
-    errors.firstName = 'First name field is required'
-  }
-  if (Validator.isEmpty(data.lastName)) {
-		errors.lastName = 'Last name field is required';
-  }
-  if (Validator.isEmpty(data.email)) {
-		errors.email = 'Email field is required';
-  }
-  if (!Validator.isEmail(data.email)) {
-    errors.email = "Email Should be in proper formate"
-  }
-	if (Validator.isEmpty(data.password)) {
-		errors.password = 'Password field is required';
-  }
-  if (Validator.isEmpty(data.mobile)) {
-    errors.mobile = 'Mobile number is required '
-  }
-  if (!Validator.isNumeric.isLength(data.mobile,{min:10,max:13})) {
-    errors.mobile= 'Mobile should be in number'
-  }
-  if (Validator.isEmpty(data.confirmPass)) {
-		errors.confirmPass = 'Confirm Password Field is Required';
-	}
-	if (!Validator.equals(data.password, data.confirmPass)) {
-		errors.confirmPass = ' Password must match';
-  }
-  
-  return {
-    errors,
-    isValid: isEmpty(errors)
-  }
-
-};
+export default { registerRules, validate}

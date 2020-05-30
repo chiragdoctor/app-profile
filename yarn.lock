@@ -1454,6 +1454,14 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+express-validator@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-6.5.0.tgz#0cfb3a94f902b75c597372ac91c7dfb267c5c221"
+  integrity sha512-kXi99TuVeLWkxO0RtDOSj56T7YR0H5KZZyhtzoPSZ5TffBvrJpZPSp/frYcT/zVoLhH8NXDk+T0LCSeI6TbOGA==
+  dependencies:
+    lodash "^4.17.15"
+    validator "^13.0.0"
+
 express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
@@ -2019,7 +2027,7 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash@^4.17.13:
+lodash@^4.17.13, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==

@@ -1,5 +1,7 @@
 import { Router } from "express";
 import userController from "../controller/userController";
+import register from "../validator/register";
+
 
 
 const router = Router()
@@ -9,7 +11,7 @@ router.get('/', async (rea,res) => {
   res.send('this is the user router')
 })
 // user register route 
-router.post('/', userController.create)
+router.post('/', register.registerRules(),register.validate , userController.create)
 
 // user login route 
 

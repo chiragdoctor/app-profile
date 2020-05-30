@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import userRoutes from './routers/userRoutes';
 import dbController from './controller/dbController';
+import profileRouters from './routers/profileRoutes';
 
 const app = express()
 
@@ -18,7 +19,8 @@ app.get('/',(req,res) => {
   res.render('index', { title: 'User Profile' });
 })
 
-app.use('/user',userRoutes)
+app.use('/user', userRoutes)
+app.use('/profile', profileRouters)
 
 const port = 8082
 app.listen(port,() => {

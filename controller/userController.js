@@ -1,9 +1,14 @@
 import User from "../model/user";
 import { genSalt, hash } from "bcrypt";
 import { url } from "gravatar";
+import validateRegisterInput from "../validator/register";
 
 const create = async (req,res) => {
   try {
+    const { errors, isValid } = validateRegisterInput(req.body)
+    if (!isValid) {
+      return res.status(400).json(errors)
+    }
     const {firstName,lastName,email,mobile} = req.body
     const salt = await genSalt(12)
     const password = await hash(req.body.password, salt)

@@ -14,7 +14,7 @@ router.get('/', async (rea,res) => {
 router.post('/', register.registerRules(),register.validate , userController.create)
 
 // user login route 
-
+router.post('/login',register.loginRules(),register.validate, userController.login)
 
 export default router
 

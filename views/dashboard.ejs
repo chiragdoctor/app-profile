@@ -1,14 +1,23 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profiles</title>
+    <title>Dashboard</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link href="/stylesheets/register.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Profiles</h1>
-    <% users.forEach(function(user) { %>
-        <li><%= user.firstname %> <%= user.lastname %></li>
-    <% }); %>
+    <h1>Dashboard</h1>
+    <div>Welcome, <%= profile.user.firstname %></div>
+    <p>Please setup your profile and add some information</p>
+    <% if(profile) { %>
+    
+    <% } else { %>
+        <form action="/profile/<%= profile.user._id %>" method="get">
+            <input type="submit" class="btnRegister mx-auto" value="Create Profile">
+        </form>
+    <% } %>
 </body>
 </html>

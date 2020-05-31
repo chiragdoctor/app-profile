@@ -26,13 +26,7 @@ router.post("/register", async (req, res) => {
     avatar,
   });
   await user.save();
-  res.json({ Status: "Success" });
+  res.render('login');
 });
-
-router.get('/dashboard/:userid', async (req, res) => {
-	const users = await User.find({});
-	res.render('dashboard', {userId: req.params.userid, users: users})
-})
-
 
 module.exports = router;

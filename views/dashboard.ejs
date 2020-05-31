@@ -7,13 +7,17 @@
     <link href="/stylesheets/register.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
     <h1>Dashboard</h1>
     <div>Welcome, <%= profile.user.firstname %></div>
     <p>Please setup your profile and add some information</p>
     <% if(profile) { %>
-    
+        <a href="/profile/edit/<%= profile._id %>">
+            <i class="fas fa-user-circle text-info mr-1"></i>
+            Edit Profile
+        </a>
     <% } else { %>
         <form action="/profile/<%= profile.user._id %>" method="get">
             <input type="submit" class="btnRegister mx-auto" value="Create Profile">

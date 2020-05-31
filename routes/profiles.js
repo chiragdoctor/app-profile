@@ -45,4 +45,50 @@ router.post("/save/:userid", async (req, res) => {
     res.redirect(`/dashboard/${uid}`);
 });
 
+router.get('/edit/:profileid', async (req, res) => {
+    const pid = req.params.profileid;
+    try {
+        const profile = await Profile.findById(pid);
+        res.render('edit-profile', { profile });
+    } catch(err) {
+        res.send(err);
+    }
+});
+
+router.post('/edit/:profileid', async (req, res) => {
+    const pid = req.params.profileid;
+    const {
+        company,
+        website,
+        location,
+        status,
+        skills,
+        bio,
+        githubusername,
+        twitter,
+        facebook,
+        linkedin,
+        youtube,
+        instagram
+    } = req.body;
+
+    const profile = await Profile.findOneAndUpdate({_id: pid}, {$set: {
+        company,
+        website,
+        location,
+        status,
+        skills: skills.trim(),
+        bio,
+        githubusername,
+        social: {
+            twitter,
+            facebook,
+            instagram,
+            youtube,
+            linkedin
+        }
+    }});
+    res.render('dashboard', {profile});
+});
+
 module.exports = router;

@@ -19,7 +19,7 @@ app.get('/',(req,res) => {
   res.render('index', { title: 'User Profile' });
 })
 
-app.use('/user', userRoutes)
+app.use('/users', userRoutes)
 app.use('/profile', profileRouters)
 
 const port = 8082

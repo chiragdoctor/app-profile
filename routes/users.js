@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var gravatar = require('gravatar');
 var bcrypt = require('bcrypt');
+const config = require('config');
 
-//Model
 var User = require('../models/user');
-/* GET users listing. */
+
 router.post('/register', async (req, res, next) => {
 	const { firstname, lastname, email, mobile } = req.body;
 
@@ -14,8 +14,8 @@ router.post('/register', async (req, res, next) => {
 		r: 'pg',
 		d: 'mm'
 	});
-	const saltRounds = 10;
-	const salt = await bcrypt.genSalt(saltRounds);
+
+	const salt = await bcrypt.genSalt(config.get('encrypt.rounds'));
 	const password = await bcrypt.hash(req.body.password, salt);
 	const user = new User({
 		firstname,

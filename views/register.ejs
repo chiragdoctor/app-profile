@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link href="stylesheets/register.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid register">
+        <div class="row">
+            <div class="col-md-9 register-left">
+                <h3 class="register-heading">Register</h3>
+                <form action="users/register" method="POST">
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input name="firstname" type="text" class="form-control" placeholder="First Name *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input name="lastname" type="text" class="form-control" placeholder="Last Name *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input name="mobile" type="text" class="form-control" placeholder="Mobile *" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input name="email" type="email" class="form-control" placeholder="Email *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password" class="form-control" placeholder="Password *" value="">
+                            </div>
+                        </div>
+                            <input type="submit" class="btnRegister mx-auto" value="Register">
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-3 register-right">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Welcome</h3>
+                <p>You are now 17 weeks away from becoming a fullstack developer!</p>
+                <input type="submit" name="" value="Login"/><br/>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

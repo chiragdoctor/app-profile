@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+}
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.register{
+    margin-top: 3%;
+    padding: 3%;
+}
+
+.register-right {
+    color: #fff;
+    text-align: center;
+    margin-top: 4%;
+}
+
+.register-right input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-left {
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+}
+.register-right img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 5s infinite;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); opacity: 1;}
+    100% { transform: translateY(-200px); opacity: 0;}
+}
+@keyframes mover {
+    0% { transform: translateY(0); opacity: 1;}
+    100% { transform: translateY(-200px); opacity: 0;}
+}
+
+.register-right p {
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+
+.register-heading {
+    text-align: center;
+    margin-top: 8%;
+    color: #495057;
+    margin-bottom: -15%;
+}
+
+.register-form {
+    padding: 10%;
+    margin-top: 10%;
+}
+
+.btnRegister {
+    border: none;
+    border-radius: 1.5rem;
+    padding: 1%;
+    width: 25%;
+    background: #0062cc;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    cursor: pointer;
+    /* float: right; */
+}

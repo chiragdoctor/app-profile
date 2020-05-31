@@ -1,32 +1,38 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var gravatar = require('gravatar');
-var bcrypt = require('bcrypt');
-const config = require('config');
+var gravatar = require("gravatar");
+var bcrypt = require("bcrypt");
+const config = require("config");
 
-var User = require('../models/user');
+var User = require("../models/user");
 
-router.post('/register', async (req, res, next) => {
-	const { firstname, lastname, email, mobile } = req.body;
+router.post("/register", async (req, res) => {
+  const { firstname, lastname, email, mobile } = req.body;
 
-	const avatar = gravatar.url(email, {
-		s: '200',
-		r: 'pg',
-		d: 'mm'
-	});
+  const avatar = gravatar.url(email, {
+    s: "200",
+    r: "pg",
+    d: "mm",
+  });
 
-	const salt = await bcrypt.genSalt(config.get('encrypt.rounds'));
-	const password = await bcrypt.hash(req.body.password, salt);
-	const user = new User({
-		firstname,
-		lastname,
-		email,
-		password,
-		mobile,
-		avatar
-	});
-	await user.save();
-	res.json({ Status: 'Success' });
+  const salt = await bcrypt.genSalt(config.get("encrypt.rounds"));
+  const password = await bcrypt.hash(req.body.password, salt);
+  const user = new User({
+    firstname,
+    lastname,
+    email,
+    password,
+    mobile,
+    avatar,
+  });
+  await user.save();
+  res.json({ Status: "Success" });
 });
+
+router.get('/dashboard/:userid', async (req, res) => {
+	const users = await User.find({});
+	res.render('dashboard', {userId: req.params.userid, users: users})
+})
+
 
 module.exports = router;

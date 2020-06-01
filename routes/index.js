@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
   if (user) {
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (isValidPassword) {
-      res.redirect(`/users/dashboard/${user._id}`);
+      res.redirect(`/dashboard/${user._id}`);
     } else {
       res.render("login", {
         displayAlert: true,

@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Experience</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link href="/stylesheets/register.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+            <div class="row">
+                <div class="col-md-8 m-auto">
+                    <h1 class="text-center">Add Experience</h1>
+                    <form action="/experience/save/<%= profileid %>" method="post">
+                        <div class="form-group">
+                            <input name="title" type="text" class="form-control form-control-lg" placeholder="Title *" value="">
+                        </div>
+                        <div class="form-group">
+                            <input name="company" type="text" class="form-control form-control-lg" placeholder="Company *" value="">
+                        </div>
+                        <div class="form-group">
+                            <input name="location" type="text" class="form-control form-control-lg" placeholder="Location" value="">
+                        </div>
+                        <div class="form-group">
+                            <input name="from" type="date" class="form-control form-control-lg" value="">
+                        </div>
+                        <div class="form-group">
+                            <input name="to" type="date" class="form-control form-control-lg" value="">
+                        </div>
+                        <div class="form-check mb-4">
+                            <input name="current" type="checkbox" class="form-check-input" />
+                            <label for="current" class="form-check-label">Current Position</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" type="text" class="form-control form-control-lg" placeholder="Job Description" value=""></textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn-create-profile" value="Add Experience"/><br/>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

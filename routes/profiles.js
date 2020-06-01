@@ -87,8 +87,8 @@ router.post('/edit/:profileid', async (req, res) => {
             youtube,
             linkedin
         }
-    }});
-    res.render('dashboard', {profile});
+    }}, {useFindAndModify: false});
+    res.render('dashboard', {profile, user: {}});
 });
 
 module.exports = router;

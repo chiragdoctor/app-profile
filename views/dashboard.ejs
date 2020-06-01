@@ -10,18 +10,106 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <div>Welcome, <%= profile.user.firstname %></div>
-    <p>Please setup your profile and add some information</p>
-    <% if(profile) { %>
-        <a href="/profile/edit/<%= profile._id %>">
-            <i class="fas fa-user-circle text-info mr-1"></i>
-            Edit Profile
-        </a>
-    <% } else { %>
-        <form action="/profile/<%= profile.user._id %>" method="get">
-            <input type="submit" class="btnRegister mx-auto" value="Create Profile">
-        </form>
-    <% } %>
+    <div class="container m-auto">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="display-4">
+                    <h1 >Dashboard</h1>
+                    <div>
+                        <p class="lead">Welcome, <%= user.firstname %></p>
+                        <% if(profile) { %> 
+                        <div class="btn-group mb-4" role="group">
+                            <a class="btn btn-light" href="/profile/edit/<%= profile._id %>">
+                                <i class="fas fa-user-circle text-info mr-1"></i>
+                                Edit Profile
+                            </a>
+                            <a class="btn btn-light" href="/experience/<%= profile._id %>">
+                                <i class="fab fa-black-tie text-info mr-1"></i>
+                                Add Experience
+                            </a>
+                            <a class="btn btn-light" href="/education/<%= profile._id %>">
+                                <i class="fas fa-graduation-cap text-info mr-1 mr-1"></i>
+                                Add Education
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="mb-4">Experience</h4>
+                        <table class="table h6">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Company</th>
+                                  <th scope="col">Title</th>
+                                  <th scope="col">Years</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% profile.experience.forEach(function(exp) { %>
+                                    <tr>
+                                        <td><%= exp.company %></td>
+                                        <td><%= exp.title %></td>
+                                        <td>
+                                            <time><%= new Date(exp.from).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time> - 
+                                            <time><%= new Date(exp.to).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time>
+                                        </td>
+                                        <td>
+                                            <form action="/experience/delete/<%= profile.user._id %>/<%= profile._id %>/<%= exp._id %>" method="post">
+                                                <input type="submit" class="btn btn-danger" value="Delete">
+                                            </form>
+                                        </td>
+                                        
+                                    </tr>
+                                  <% }) %>
+                              </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="mb-4">Education</h4>
+                        <table class="table h6">
+                            <thead>
+                                <tr>
+                                  <th scope="col">School</th>
+                                  <th scope="col">Degree</th>
+                                  <th scope="col">Years</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% profile.education.forEach(function(edu) { %>
+                                    <tr>
+                                        <td><%= edu.school %></td>
+                                        <td><%= edu.degree %></td>
+                                        <td>
+                                            <time><%= new Date(edu.from).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time> - 
+                                            <time><%= new Date(edu.to).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time>
+                                        </td>
+                                        <td>
+                                            <form action="/education/delete/<%= profile.user._id %>/<%= profile._id %>/<%= edu._id %>" method="post">
+                                                <input type="submit" class="btn btn-danger" value="Delete">
+                                            </form>
+                                        </td>
+                                        
+                                    </tr>
+                                  <% }) %>
+                              </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } else { %>
+            <div class="row">
+                <div class="col md-8 m-auto">
+                    <div>Welcome, <%= user.firstname %></div>
+                    <p>Please setup your profile and add some information</p>
+                    <form action="/profile/<%= user._id %>" method="get">
+                        <input type="submit" class="btnRegister mx-auto" value="Create Profile">
+                    </form>
+                </div>
+            </div>
+            
+        <% } %>
+    </div>
 </body>
 </html>

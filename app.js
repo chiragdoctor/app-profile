@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const profileRoutes = require('./routes/profiles');
 const dashboardRoutes = require('./routes/dashboard');
+const experinceRouters = require('./routes/experience'); 
+const educationRoutes = require('./routes/education');
 
 var app = express();
 require('./dbConnect')
@@ -25,6 +27,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/profile', profileRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/experience', experinceRouters);
+app.use('/education', educationRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

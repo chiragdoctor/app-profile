@@ -26,10 +26,10 @@
                             <input name="location" type="text" class="form-control form-control-lg" placeholder="Location" value="<%= profile.location %>">
                         </div>
                         <div class="form-group">
-                            <select name="status" class="form-control form-control-lg" value="<%= profile.status %>">
-                                <option class="hidden" selected="" disabled="">Please select your Status</option>
-                                <option>Student</option>
-                                <option>Developer</option>
+                            <select name="status" class="form-control form-control-lg" selected="<%= profile.status %>">
+                                <option value="0" class="hidden" disabled="">Please select your Status</option>
+                                <option value="Student">Student</option>
+                                <option value="Developer">Developer</option>
                             </select>
                         </div>
                         <div class="form-group">

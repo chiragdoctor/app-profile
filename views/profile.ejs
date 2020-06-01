@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - <%= profile.user.firstname %> </title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link href="/stylesheets/register.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="/">Hello</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mobile-nav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="/profile/all/<%= user._id %>"> Profiles</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/dashboard/<%= user._id%>">Dashboard</a></li>
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link">
+                                <img class="rounded-circle" src="<%= user.avatar %>" alt="<%= user.firstname %>" title="You must have a Gravatar connected to your email to display an image" style="width: 25px; margin-right: 5px;">Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <a class="btn btn-light mb-3 float-left" href="/profile/all/<%= profile.user._id %> ">Back to profiles</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-body bg-light text-dark mb-3">
+                    <div class="col-md-3 m-auto">
+                        <img class="rounded-circle" src="<%= profile.user.avatar %> " alt="">
+                    </div>
+                    <div class="col-md-9 text-center text-dark m-auto">
+                        <h1 class="display-4"><%= profile.user.firstname %> <%= profile.user.lastname %> </h1>
+                        <p class="lead"><%= profile.status %></p>
+                        <p><%= profile.location %> </p>
+                        <p>
+                            <a class="p-2" href="<%= profile.social.linkedin %>" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                            <a class="p-2" href="<%= profile.social.facebook %>" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                            <a class="p-2" href="<%= profile.website %>" target="_blank"><i class="fas fa-globe fa-2x"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-body bg-light mb-3">
+                    <h3 class="text-center text.info"><%= profile.user.firstname %> Bio</h3>
+                    <p class="lead"><span><%= profile.bio %> </span></p>
+                    <hr />
+                    <h3 class="text-center text.info">Skill Set</h3>
+                    <div class="row">
+                        <div class="d-flex flex-wrap justify-content-center align-items-center">
+                            <% profile.skills[0].split(',').forEach(skill => { %>
+                                <div class="p-3">
+                                    <i class="fa fa-check"></i> <%= skill %> 
+                            </div>
+                            <% }) %>
+                        </div>
+                    </div>                                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 bg-light">
+                    <h3 class="text-center text-info">Experience</h3>
+                    <% profile.experience.forEach(exp => { %>
+                        <li class="list-group-item">
+                            <h4><%= exp.company %> </h4>
+                            <p><strong>Position:</strong> <%= exp.title %> </p>
+                            <p><time><%= new Date(exp.from).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time> - 
+                                <time><%= new Date(exp.to).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time>
+                            </p>
+                            <p><strong>Location:</strong> <%= exp.location %> </p>
+                            <p><strong>Job Description:</strong> <%= exp.description %> </p>
+                        </li>
+                    <% }) %>
+                </div>
+                <div class="col-md-12 bg-light">
+                    <h3 class="text-center text-info">Education</h3>
+                    <% profile.education.forEach(edu => { %>
+                        <li class="list-group-item">
+                            <h4><%= edu.school %> </h4>
+                            <p><strong>Degreee:</strong> <%= edu.degree %> </p>
+                            <p><time><%= new Date(edu.from).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time> - 
+                                <time><%= new Date(edu.to).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric'})%></time>
+                            </p>
+                            <p><strong>Field of Study:</strong> <%= edu.fieldofstudy %> </p>
+                            <p><strong>Description:</strong> <%= edu.description %> </p>
+                        </li>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <footer class="bg-dark text-white mt-5 p-4 text-center">Copyright © 2020 Profiles.com</footer>
+    </div>
+</body>
+</html>

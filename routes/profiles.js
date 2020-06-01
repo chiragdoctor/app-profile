@@ -1,8 +1,27 @@
 var express = require("express");
 var router = express.Router();
 const Profile = require("../models/profile");
+const User = require('../models/user');
 
-router.get("/:userid", (req, res) => {
+router.get('/all/:userid', async (req, res) => {
+    const userid = req.params.userid;
+    try {
+        const user = await User.findById(userid);
+        const profiles = await Profile.find({}).populate('user');
+        res.render('profiles', {profiles: profiles, user: user});
+    } catch(err) {
+        res.send(err);
+    }
+});
+
+router.get('/:profileid', async (req, res) => {
+    const pid = req.params.profileid;
+    const profile = await Profile.findById(pid).populate('user');
+    console.log('proile', profile);
+    res.render('profile', {profile, user: profile.user})
+});
+
+router.get("/save/:userid", (req, res) => {
   res.render("create-profile", { userid: req.params.userid });
 });
 
@@ -48,8 +67,8 @@ router.post("/save/:userid", async (req, res) => {
 router.get('/edit/:profileid', async (req, res) => {
     const pid = req.params.profileid;
     try {
-        const profile = await Profile.findById(pid);
-        res.render('edit-profile', { profile });
+        const profile = await Profile.findById(pid).populate('user');
+        res.render('edit-profile', { profile, user: profile.user });
     } catch(err) {
         res.send(err);
     }
@@ -88,7 +107,7 @@ router.post('/edit/:profileid', async (req, res) => {
             linkedin
         }
     }}, {useFindAndModify: false});
-    res.render('dashboard', {profile, user: {}});
+    res.redirect(`/dashboard/${profile.user}`);
 });
 
 module.exports = router;

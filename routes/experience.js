@@ -2,9 +2,10 @@ var express = require("express");
 var router = express.Router();
 const Profile = require("../models/profile");
 
-router.get("/:profileid", (req, res) => {
+router.get("/:profileid", async (req, res) => {
   const pid = req.params.profileid;
-  res.render("add-experience", { profileid: pid });
+  const profile = await Profile.findById(pid).populate('user');
+  res.render("add-experience", { profileid: pid, user: profile.user });
 });
 
 router.post("/save/:profileid", async (req, res) => {

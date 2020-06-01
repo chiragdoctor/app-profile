@@ -52,4 +52,32 @@ const singleProfile = async (req,res) => {
 }
 
 
-export default {test,create,allProfiles,singleProfile}
+const profileExp = async (req, res) => {
+  try {
+    const userId = req.params.userId
+    const { title, company, location, from, to, current, description } = req.body
+    const newExp = { title, company, location, from, to, current, description };
+    const profile = await Profile.findOne({ user: userId })
+    profile.experience.unshift(newExp)
+   await profile.save()
+    res.json(profile)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+const profileEdu = async (req, res) => {
+  try {
+    const userId = req.params.userId
+    const newEdu = req.body
+    const profile = await Profile.findOne({ user: userId })
+    profile.education.unshift(newEdu)
+    await profile.save()
+    res.json(profile)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+
+export default {test,create,allProfiles,singleProfile,profileExp,profileEdu}

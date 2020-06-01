@@ -16,8 +16,11 @@ router.post('/', profileController.create)
 //To view single user Profile
 router.get('/user/:userId',profileController.singleProfile)
 
-// Experience route 
+// add Experience route 
+router.put('/experience/:userId', profileController.profileExp)
 
+// Add Education 
+router.put('/education/:userId',profileController.profileEdu)
 
 
 export default router

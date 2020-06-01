@@ -18,7 +18,7 @@ router.post('/:uid', profileController.create)
 //To view single user Profile
 router.get('/user/:uid',profileController.singleProfile)
 
-// add Experience route 
+// add Experience route
 router.get('/experience/:uid', profileController.expForm);
 router.post('/experience/:uid', profileController.profileExp)
 
@@ -27,11 +27,16 @@ router.get('/education/:uid',profileController.eduForm)
 router.post('/education/:uid', profileController.profileEdu)
 
 //Delete experience
-router.delete('/experience/:expId',
-  profileController.delProfileExp)
-  
+router.post(
+	'/experience/:uid/:profileid/:id',
+	profileController.delProfileExp,
+);
+
 //Delete education
-  router.delete('/education/:eduId',profileController.delProfileEdu)
+  router.post(
+		'/education/:uid/:profileid/:id',
+		profileController.delProfileEdu,
+	);
 
 
 export default router

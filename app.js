@@ -4,10 +4,12 @@ import path from 'path';
 import userRoutes from './routers/userRoutes';
 import dbController from './controller/dbController';
 import profileRouters from './routers/profileRoutes';
+import expressEjsLayouts from 'express-ejs-layouts';
 
 const app = express()
 
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
+app.use(expressEjsLayouts)
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }))
@@ -16,7 +18,7 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname,'public')))
 
 app.get('/',(req,res) => {
-  res.render('index', { title: 'User Profile' });
+  res.render('welcome');
 })
 
 app.use('/users', userRoutes)

@@ -1454,6 +1454,11 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+express-ejs-layouts@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/express-ejs-layouts/-/express-ejs-layouts-2.5.0.tgz#b33f285fa7d5d2b8a6b7ab6569730547156e4e79"
+  integrity sha512-27Kza3FR8UqvQsq1ewaxC2IwpgrQttYDEFN5s8D74Fv1VPdzsXFWsiKhPMlNauG+DrgMAmh7FhQl5hKHffd+wQ==
+
 express-validator@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-6.5.0.tgz#0cfb3a94f902b75c597372ac91c7dfb267c5c221"

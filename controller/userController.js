@@ -2,6 +2,13 @@ import User from "../model/user";
 import { genSalt, hash, compare } from "bcrypt";
 import { url } from "gravatar";
 
+const regiForm = (req,res) => {
+  res.render('register')
+}
+
+const loginForm = (req,res) => {
+  res.render('login')
+}
 
 const create = async (req,res) => {
   try {
@@ -12,11 +19,10 @@ const create = async (req,res) => {
     const avatar = await url(req.body.email, { s: '200', r: 'pg', d: '404' });
     const isRegister = await User.findOne({ email: email })
     const userData = new User({ firstName, lastName, email, password, avatar, mobile })
-    res.send(userData)
     if (!isRegister) {
       await userData.save()
-      res.redirect('/user/login')
-      res.send(`The user is registered ✊ 🤦‍♂`)
+      res.redirect('/users/login')
+      // res.send(`The user is registered ✊ 🤦‍♂`)
     } else {
       errors.email = 'Email Already Exists'
       res.json(errors)
@@ -38,7 +44,7 @@ const login = async (req,res) => {
       const isUser = await User.findOne({ email: req.body.email })
       if (!isUser) {
         // redirect to the registration page
-        // res.redirect('')
+        res.redirect('')
         res.json({err: "Please go to the registration"})
       } else {
         await compare(password, isUser.password)
@@ -62,6 +68,6 @@ const allUser = async (req,res) => {
     res.json(error)
   }
 }
-export default {create,login,allUser}
+export default {create,login,allUser, regiForm,loginForm}
 
 

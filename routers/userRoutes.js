@@ -9,8 +9,11 @@ const router = Router()
 // user Get route 
 router.get('/', userController.allUser)
 
+router.get('/register',userController.regiForm)
 // user register route 
-router.post('/', register.registerRules(),register.validate , userController.create)
+router.post('/register', register.registerRules(),register.validate , userController.create)
+
+router.get('/login', userController.loginForm);
 
 // user login route 
 router.post('/login',register.loginRules(),register.validate, userController.login)

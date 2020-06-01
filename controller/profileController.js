@@ -44,6 +44,7 @@ const allProfiles = async (req, res) => {
 const singleProfile = async (req,res) => {
   try {
     const userId = req.params.userId
+    // const uid = User._id
     const sinProfile = await Profile.findOne({ user: userId }).populate('User', ['firstName', 'avatar'])
     res.json(sinProfile)
   } catch (error) {
@@ -79,5 +80,29 @@ const profileEdu = async (req, res) => {
   }
 }
 
+const delProfileExp = async (req,res) => {
+  try {
+    // const expId = req.params.expId 
+    // const foundProfile = await Profile.findOne({user: req.user.id})
 
-export default {test,create,allProfiles,singleProfile,profileExp,profileEdu}
+    // need guidance to delete id 
+    res.json({ msg: 'need to check with prashant' });
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+const delProfileEdu = async (req,res) => {
+  res.json({msg: "need to check with prashant"})
+}
+
+export default {
+	test,
+	create,
+	allProfiles,
+	singleProfile,
+	profileExp,
+	profileEdu,
+  delProfileExp,
+  delProfileEdu
+};

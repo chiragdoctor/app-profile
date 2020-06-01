@@ -42,8 +42,8 @@ const login = async (req,res) => {
         res.json({err: "Please go to the registration"})
       } else {
         await compare(password, isUser.password)
-        const {firstName,lastName,email,mobile,avatar} = isUser
-        res.json({ firstName, lastName, email, mobile, avatar })  
+        const {firstName,lastName,email,mobile,avatar,_id} = isUser
+        res.json({ firstName, lastName, email, mobile, avatar,_id })  
         // To do Send the data to the view
       }
     } else {

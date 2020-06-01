@@ -6,8 +6,10 @@ const test = async (req,res) => {
   res.json({ msg: "This is the test route" })
   
 }
-const getForm = async (req,res) => {
-  res.render('profile')
+const getForm = async (req, res) => {
+  const uid = req.params.uid
+  const user = await User.findById(uid)
+  res.render('profile',{user})
 }
 
 const create = async (req, res) => {
@@ -28,7 +30,8 @@ const create = async (req, res) => {
     }
     const profile = new Profile(profileData)
     await profile.save()
-    res.json({msg:'the profile is saved'})
+    // res.json({msg:'the profile is saved'})
+    res.redirect(`/dashboard/${uid}`,)
     
   } catch (error) {
     res.json({error})

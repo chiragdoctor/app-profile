@@ -13,7 +13,6 @@ router.get('/', profileController.allProfiles);
 
 // add profile details
 router.get('/:uid', profileController.getForm)
-
 router.post('/:uid', profileController.create)
 
 //To view single user Profile

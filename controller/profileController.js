@@ -21,6 +21,15 @@ const eduForm = async (req,res) => {
   const user = await User.findById(uid)
   res.render('add-education',{user})
 }
+const editForm = async (req,res) => {
+  const pid = req.params.pid
+  try {
+    const profile = await Profile.findById(pid)
+    res.render('editprofile', { profile })
+  } catch (error) {
+    res.json(error)
+  }
+}
 const create = async (req, res) => {
   try {
     const uid = req.params.uid
@@ -37,13 +46,69 @@ const create = async (req, res) => {
       user: uid ,
       company, website,location,skills: skillsData,bio,status,githubusername,social: socialData
     }
-    const profile = await Profile.findOneAndUpdate({user : uid},{$set: profileData},{new: true, upsert:ture})
-    await profile.save()
+    const profile = new Profile(profileData)
+    profile.save()
     // res.json({msg:'the profile is saved'})
     res.redirect(`/dashboard/${uid}`,)
 
   } catch (error) {
     res.json({error})
+  }
+}
+
+const edit = async (req,res) => {
+  const pid = req.params.pid
+  try {
+    const {
+			company,
+			website,
+			location,
+			status,
+			skills,
+			bio,
+			githubusername,
+			youtube,
+			twitter,
+			instagram,
+			linkedin,
+			facebook,
+		} = req.body;
+		const skillsData = Array.isArray(skills)
+			? skills
+			: skills.split(',').map((skill) => ' ' + skill.trim());
+		const socialData = { youtube, twitter, instagram, linkedin, facebook };
+		// const profileData = {
+		// 	company,
+		// 	website,
+		// 	location,
+		// 	skills: skillsData,
+		// 	bio,
+		// 	status,
+		// 	githubusername,
+		// 	social: socialData,
+    // };
+    const profile = await Profile.findOneAndUpdate(
+			{ _id: pid },
+			{
+				$set: {
+					company,
+					website,
+					location,
+					skills: skillsData,
+					bio,
+					status,
+					githubusername,
+					social: socialData,
+				},
+			},
+			{ useFindAndModify: false },
+		);
+    // console.log(profile);
+    profile.save()
+    const uid = profile.user._id
+    res.redirect(`/dashboard/${uid}`);
+  } catch (error) {
+    res.json(error)
   }
 }
 
@@ -125,6 +190,16 @@ const delProfileEdu = async (req,res) => {
   }
 }
 
+const deleteProfile = async (req, res) => {
+  const uid = req.params.uid
+  try {
+    await Profile.findOneAndRemove({ user: uid })
+    res.redirect(`/dashboard/${uid}`);
+  } catch (error) {
+
+  }
+}
+
 export default {
 	test,
 	create,
@@ -136,5 +211,8 @@ export default {
   delProfileEdu,
   getForm,
   expForm,
-  eduForm
+  eduForm,
+  deleteProfile,
+  editForm,
+  edit
 };

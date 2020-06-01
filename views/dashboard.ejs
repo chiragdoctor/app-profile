@@ -17,8 +17,7 @@
         <p class="card-text"><p class="lead"><%= user.email%> </p></p>
         <% if(profile){%>
       <div class="dash-buttons">
-        <a href="/profile/<%= user._id%>" class="btn btn-light"
-          ><i class="fas fa-user-circle text-primary"></i> Edit Profile</a>
+        <a href="/profile/edit/<%= profile._id%>" class="btn btn-light"><i class="fas fa-user-circle text-primary"></i> Edit Profile</a>
         <a href="/profile/experience/<%= user._id%>" class="btn btn-light"><i class="fab fa-black-tie text-primary"></i> Add Experience</a>
         <a href="/profile/education/<%= user._id%>" class="btn btn-light"
           ><i class="fas fa-graduation-cap text-primary"></i> Add Education</a
@@ -47,9 +46,7 @@
                     <form action="/profile/experience/<%= profile.user._id %>/<%= profile._id %>/<%= exp._id %>" method="post">
                         <input type="submit" class="btn btn-danger" value="Delete">
                     </form>
-
                 </td>
-
             </tr>
           <% }) %>
         </tbody>
@@ -77,18 +74,14 @@
                       <form action="/profile/education/<%= profile.user._id %>/<%= profile._id %>/<%= edu._id %>" method="post">
                           <input type="submit" class="btn btn-danger" value="Delete">
                       </form>
-
                   </td>
-
               </tr>
             <% }) %>
           </tbody>
         </table>
-
         <div class="my-2">
             <button class="btn btn-danger">
                 <i class="fas fa-user-minus"></i>
-
                 Delete My Account
             </button>
           </div>

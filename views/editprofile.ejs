@@ -1,0 +1,65 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mb-3">
+        <i class="fas fa-user-plus mr-3"></i>Create Profile
+      </h1>
+    <form action="/profile/edit/<%= profile._id%>" method="POST">
+        <div class="form-group">
+          <label for="company">Company name</label>
+          <input type="text" id="company" class="form-control" name="company" placeholder="<%= profile.company%>" value="">
+        </div>
+         <div class="form-group">
+          <label for="website">website name</label>
+          <input type="text" id="website" class="form-control" name="website" placeholder="<%= profile.website%>" value="">
+        </div>
+         <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" value="" id="location" class="form-control" name="location" placeholder="E<%= profile.location%>">
+        </div>
+         <div class="form-group">
+          <label for="status">Status</label>
+          <input type="text" id="status" value="" class="form-control" name="status" placeholder="<%= profile.status%>">
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <input type="text" id="skills" class="form-control" value="" name="skills" placeholder="<%= profile.skills%>">
+        </div>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea type="text" id="bio"   class="form-control" name="bio" placeholder=""><%= profile.bio%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="githubusername">Github Username</label>
+          <input type="text" value="" id="githubusername" class="form-control" name="githubusername" placeholder="<%= profile.githubusername%>">
+        </div>
+        <label for="social"><h3>Social</h3></label><br>
+        <div class="form-row mb-3"id="social">
+          <div class="col" >
+            <label for="youtube">Youtube</label>
+            <input type="text" class="form-control" name="youtube" id="youtube" placeholder="<%= profile.social.youtube%>" value="">
+          </div>
+          <div class="col">
+            <label for="twitter">Twitter</label>
+            <input type="text" class="form-control"value="" name="twitter" id="twitter" placeholder="<%= profile.social.twitter%>" >
+          </div>
+        </div>
+        <div class="form-row mb-3"id="social">
+          <div class="col" >
+            <label for="facebook">Facebook</label>
+            <input type="text" class="form-control" name="facebook" value="" id="facebook" placeholder="<%= profile.social.facebook%>">
+          </div>
+          <div class="col">
+            <label for="instagram">instagram</label>
+            <input type="text"  class="form-control" name="instagram" value="" id="instagram" placeholder="<%= profile.social.instagram%>">
+          </div>
+        </div>
+         <div class="form-group " id="social">
+            <label for="linkedin">linkedin</label>
+            <input type="text" class="form-control" name="linkedin" id="linkedin" value="" placeholder="<%= profile.social.linkedin%>">
+        </div>
+        <input type="submit" value="Update Your profile" class="btn btn-primary btn-block">
+    </form>
+    </div>
+  </div>
+</div>

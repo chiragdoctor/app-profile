@@ -72,15 +72,16 @@ const allUser = async (req,res) => {
 
 const dashboard =async (req,res) => {
   try {
-    const uid = req.params.userid
-    const user = await User.findOne(uid)
-    // const { firstName, lastName, avatar } = user
-    
-    res.render('dashboard',{user:user})
+    const uid = req.params.uid
+    const profile = await Profile.findOne({ user: uid }).populate('Users')   
+    const user = await User.findById(uid)
+    // res.json(profile)
+    res.render('dashboard', { profile: profile, user: user }) 
   } catch (error) {
     res.json(error)
   }
 }
-export default {create,login,allUser, regiForm,loginForm,dashboard}
+export default { create, login, allUser, regiForm, loginForm, dashboard }
+
 
 

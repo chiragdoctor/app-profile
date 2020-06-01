@@ -5,7 +5,5 @@ import userController from '../controller/userController';
 
 const router = Router();
 
-
-
-router.get('/dashboard/:userId', userController.dashboard);
+router.get('/dashboard/:uid', userController.dashboard);
 export default router;

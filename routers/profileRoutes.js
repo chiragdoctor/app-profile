@@ -16,7 +16,7 @@ router.get('/:uid', profileController.getForm)
 router.post('/:uid', profileController.create)
 
 //To view single user Profile
-router.get('/user',profileController.singleProfile)
+router.get('/user/:uid',profileController.singleProfile)
 
 // add Experience route 
 router.put('/experience/:userId', profileController.profileExp)

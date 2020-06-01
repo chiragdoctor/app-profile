@@ -40,7 +40,7 @@ const create = async (req, res) => {
 
 const allProfiles = async (req, res) => {
   try {
-    const profiles = await Profile.find().populate('User', ['firstName', 'avatar']);
+    const profiles = await Profile.find({}).populate('User', ['firstName', 'avatar']);
     res.json(profiles)    
   } catch (error) {
     res.json({ error });
@@ -48,11 +48,12 @@ const allProfiles = async (req, res) => {
 }
 
 const singleProfile = async (req,res) => {
+  const uid = req.params.uid
   try {
-    const userId = req.params.userId
     // const uid = User._id
-    const sinProfile = await Profile.findOne({ user: userId }).populate('User', ['firstName', 'avatar'])
-    res.json(sinProfile)
+    const profile = await Profile.findOne({ user: uid }).populate('users',['firstName','avatar'])
+    res.render('singleProfile',{profile: profile})
+    // res.json(profile)
   } catch (error) {
     res.json(error)
   }

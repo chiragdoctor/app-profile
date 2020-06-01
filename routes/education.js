@@ -20,4 +20,16 @@ router.post("/save/:profileid", async (req, res) => {
   }
 });
 
+router.post('/delete/:userid/:profileid/:id', async (req, res) => {
+    const {id, profileid,userid} = req.params;
+    console.log(req.params.id);
+    try {
+        await Profile.updateOne({_id:profileid}, { $pull: {education: { _id: id }}}, {multi: true});
+        res.redirect(`/dashboard/${userid}`);
+    } catch(err) {
+        res.send(err);
+    }
+    
+});
+
 module.exports = router;

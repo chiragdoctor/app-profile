@@ -24,10 +24,7 @@ router.post('/delete/:userid/:profileid/:id', async (req, res) => {
     const {id, profileid,userid} = req.params;
     console.log(req.params.id);
     try {
-        const profile =  await Profile.updateOne({_id:profileid}, { $pull: {experience: { _id: id }}}, {multi: true});
-        // profile.experience = exp;
-        // await profile.save();
-        console.log('ssdfsdf', profile)
+        await Profile.updateOne({_id:profileid}, { $pull: {experience: { _id: id }}}, {multi: true});
         res.redirect(`/dashboard/${userid}`);
     } catch(err) {
         res.send(err);

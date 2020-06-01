@@ -8,10 +8,18 @@ const test = async (req,res) => {
 }
 const getForm = async (req, res) => {
   const uid = req.params.uid
-  const user = await User.findById(uid)
   res.render('profile',{user})
 }
-
+const expForm = async (req, res) => {
+  const uid = req.params.uid
+  const user = await User.findById(uid)
+ res.render('add-experience',{user}) 
+}
+const eduForm = async (req,res) => {
+  const uid = req.params.uid
+  const user = await User.findById(uid)
+  res.render('add-education',{user})
+}
 const create = async (req, res) => {
   try {
     const uid = req.params.uid
@@ -59,16 +67,16 @@ const singleProfile = async (req,res) => {
   }
 }
 
-
 const profileExp = async (req, res) => {
   try {
-    const userId = req.params.userId
+    const uid = req.params.uid
     const { title, company, location, from, to, current, description } = req.body
     const newExp = { title, company, location, from, to, current, description };
-    const profile = await Profile.findOne({ user: userId })
+    const profile = await Profile.findOne({ user: uid })
     profile.experience.unshift(newExp)
    await profile.save()
-    res.json(profile)
+    // res.json(profile)
+    res.redirect(`/dashboard/${uid}`);
   } catch (error) {
     res.json(error)
   }
@@ -76,12 +84,13 @@ const profileExp = async (req, res) => {
 
 const profileEdu = async (req, res) => {
   try {
-    const userId = req.params.userId
+    const uid = req.params.uid
     const newEdu = req.body
-    const profile = await Profile.findOne({ user: userId })
+    const profile = await Profile.findOne({ user: uid })
     profile.education.unshift(newEdu)
     await profile.save()
-    res.json(profile)
+    res.redirect(`/dashboard/${uid}`);
+    // res.json(profile)
   } catch (error) {
     res.json(error)
   }
@@ -112,5 +121,7 @@ export default {
 	profileEdu,
   delProfileExp,
   delProfileEdu,
-  getForm
+  getForm,
+  expForm,
+  eduForm
 };

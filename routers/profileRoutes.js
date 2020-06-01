@@ -19,10 +19,12 @@ router.post('/:uid', profileController.create)
 router.get('/user/:uid',profileController.singleProfile)
 
 // add Experience route 
-router.put('/experience/:userId', profileController.profileExp)
+router.get('/experience/:uid', profileController.expForm);
+router.post('/experience/:uid', profileController.profileExp)
 
-// Add Education 
-router.put('/education/:userId', profileController.profileEdu)
+// Add Education
+router.get('/education/:uid',profileController.eduForm)
+router.post('/education/:uid', profileController.profileEdu)
 
 //Delete experience
 router.delete('/experience/:expId',

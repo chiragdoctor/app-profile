@@ -1,6 +1,7 @@
 import { Router } from "express";
 import profileController from "../controller/profileController";
 
+
 const router = Router()
 
 
@@ -11,7 +12,9 @@ const router = Router()
 router.get('/', profileController.allProfiles);
 
 // add profile details
-router.post('/', profileController.create)
+router.get('/:uid', profileController.getForm)
+
+router.post('/:uid', profileController.create)
 
 //To view single user Profile
 router.get('/user',profileController.singleProfile)

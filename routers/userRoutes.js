@@ -18,5 +18,7 @@ router.get('/login', userController.loginForm);
 // user login route 
 router.post('/login',register.loginRules(),register.validate, userController.login)
 
+// user Dashboar 
+router.get('/dashboard/:userId',userController.dashboard)
 export default router
 

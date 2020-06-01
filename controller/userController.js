@@ -1,6 +1,7 @@
 import User from "../model/user";
 import { genSalt, hash, compare } from "bcrypt";
 import { url } from "gravatar";
+import Profile from "../model/profile";
 
 const regiForm = (req,res) => {
   res.render('register')
@@ -44,12 +45,12 @@ const login = async (req,res) => {
       const isUser = await User.findOne({ email: req.body.email })
       if (!isUser) {
         // redirect to the registration page
-        res.redirect('')
+        res.redirect('/register')
         res.json({err: "Please go to the registration"})
       } else {
         await compare(password, isUser.password)
-        const {firstName,lastName,email,mobile,avatar,_id} = isUser
-        res.json({ firstName, lastName, email, mobile, avatar,_id })  
+      
+        res.redirect(`/dashboard/${isUser._id}`)
         // To do Send the data to the view
       }
     } else {
@@ -68,6 +69,18 @@ const allUser = async (req,res) => {
     res.json(error)
   }
 }
-export default {create,login,allUser, regiForm,loginForm}
+
+const dashboard =async (req,res) => {
+  try {
+    const uid = req.params.userid
+    const user = await User.findOne(uid)
+    // const { firstName, lastName, avatar } = user
+    
+    res.render('dashboard',{user:user})
+  } catch (error) {
+    res.json(error)
+  }
+}
+export default {create,login,allUser, regiForm,loginForm,dashboard}
 
 

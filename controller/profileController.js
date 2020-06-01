@@ -6,6 +6,9 @@ const test = async (req,res) => {
   res.json({ msg: "This is the test route" })
   
 }
+const getForm = async (req,res) => {
+  res.render('profile')
+}
 
 const create = async (req, res) => {
   try {
@@ -104,5 +107,6 @@ export default {
 	profileExp,
 	profileEdu,
   delProfileExp,
-  delProfileEdu
+  delProfileEdu,
+  getForm
 };

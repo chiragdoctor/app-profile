@@ -26,7 +26,6 @@ router.post("/login", async (req, res) => {
       });
     }
   } else {
-    console.log('hello world')
     res.render("login", {
       displayAlert: true,
       message: "Email not registered!!",

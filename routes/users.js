@@ -5,6 +5,7 @@ var bcrypt = require("bcrypt");
 const config = require("config");
 
 var User = require("../models/user");
+const Profile = require('../models/profile');
 
 router.post("/register", async (req, res) => {
   const { firstname, lastname, email, mobile } = req.body;
@@ -26,7 +27,19 @@ router.post("/register", async (req, res) => {
     avatar,
   });
   await user.save();
-  res.render('login');
+  res.redirect('/login');
+});
+
+router.post('/delete/:userid', async (req, res) => {
+  const uid = req.params.userid;
+  try {
+    await Profile.findOneAndDelete({user: uid});
+    await User.findOneAndDelete({_id: uid});
+    res.redirect('/login');
+  } catch(err) {
+    res.send(err);
+  }
+  
 });
 
 module.exports = router;

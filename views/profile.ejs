@@ -1,65 +1,67 @@
+<!-- @format -->
+
 <div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus mr-3"></i>Create Profile 
-      </h1>
-    <form action="/profile/<%= user._id%>" method="POST">
-        <div class="form-group">
-          <label for="company">Company name</label>
-          <input type="text" id="company" class="form-control" name="company" placeholder="Enter Company name">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">
+                <i class="fas fa-user-plus mr-3"></i>Create Profile
+            </h1>
+            <form action="/profile/<%= user._id%>" method="POST">
+                <div class="form-group">
+                    <label for="company">Company name</label>
+                    <input type="text" id="company" class="form-control" name="company" placeholder="Enter Company name" />
+                </div>
+                <div class="form-group">
+                    <label for="website">website name</label>
+                    <input type="text" id="website" class="form-control" name="website" placeholder="Enter website name" />
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" class="form-control" name="location" placeholder="Enter Location" />
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" id="status" class="form-control" name="status" placeholder="Enter status " />
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills</label>
+                    <input type="text" id="skills" class="form-control" name="skills" placeholder="Enter Skills " />
+                </div>
+                <div class="form-group">
+                    <label for="bi">Bio</label>
+                    <input type="text" id="bio" class="form-control" name="bio" placeholder="Enter Bio " />
+                </div>
+                <div class="form-group">
+                    <label for="githubusername">Github Username</label>
+                    <input type="text" id="githubusername" class="form-control" name="githubusername" placeholder="Enter Github Username " />
+                </div>
+                <label for="social"><h3>Social</h3></label><br />
+                <div class="form-row mb-3" id="social">
+                    <div class="col">
+                        <label for="youtube">Youtube</label>
+                        <input type="text" name="youtube" id="youtube" placeholder="youtube" />
+                    </div>
+                    <div class="col">
+                        <label for="twitter">Twitter</label>
+                        <input type="text" name="twitter" id="twitter" placeholder="Twitter" />
+                    </div>
+                </div>
+                <div class="form-row mb-3" id="social">
+                    <div class="col">
+                        <label for="facebook">Facebook</label>
+                        <input type="text" name="facebook" id="facebook" placeholder="Facebook" />
+                    </div>
+                    <div class="col">
+                        <label for="instagram">instagram</label>
+                        <input type="text" name="instagram" id="instagram" />
+                    </div>
+                </div>
+                <div class="form-group" id="social">
+                    <label for="linkedin">linkedin</label>
+                    <input type="text" name="linkedin" id="linkedin" placeholder="linkedin" />
+                </div>
+                <input type="submit" value="Create Profile" class="btn btn-primary btn-block" />
+            </form>
         </div>
-         <div class="form-group">
-          <label for="website">website name</label>
-          <input type="text" id="website" class="form-control" name="website" placeholder="Enter website name">
-        </div>
-         <div class="form-group">
-          <label for="location">Location</label>
-          <input type="text" id="location" class="form-control" name="location" placeholder="Enter Location">
-        </div>
-         <div class="form-group">
-          <label for="status">Status</label>
-          <input type="text" id="status" class="form-control" name="status" placeholder="Enter status ">
-        </div>
-        <div class="form-group">
-          <label for="skills">Skills</label>
-          <input type="text" id="skills" class="form-control" name="skills" placeholder="Enter Skills ">
-        </div>
-        <div class="form-group">
-          <label for="bi">Bio</label>
-          <input type="text" id="bio" class="form-control" name="bio" placeholder="Enter Bio ">
-        </div>
-        <div class="form-group">
-          <label for="githubusername">Github Username</label>
-          <input type="text" id="githubusername" class="form-control" name="githubusername" placeholder="Enter Github Username ">
-        </div>
-        <label for="social"><h3>Social</h3></label><br>
-        <div class="form-row mb-3"id="social">
-          <div class="col" >
-            <label for="youtube">Youtube</label>
-            <input type="text" name="youtube" id="youtube" placeholder="youtube">
-          </div>
-          <div class="col">
-            <label for="twitter">Twitter</label>
-            <input type="text" name="twitter" id="twitter" placeholder="Twitter">
-          </div>
-        </div>
-        <div class="form-row mb-3"id="social">
-          <div class="col" >
-            <label for="facebook">Facebook</label>
-            <input type="text" name="facebook" id="facebook" placeholder="Facebook">
-          </div>
-          <div class="col">
-            <label for="instagram">instagram</label>
-            <input type="text" name="instagram" id="instagram">
-          </div>
-        </div>
-         <div class="form-group " id="social">
-            <label for="linkedin">linkedin</label>
-            <input type="text" name="linkedin" id="linkedin" placeholder="linkedin">
-        </div> 
-        <input type="submit" value="Create Profile" class="btn btn-primary btn-block">       
-    </form>
     </div>
-  </div>
 </div>

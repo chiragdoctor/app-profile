@@ -1,24 +1,33 @@
-import { Router } from "express";
-import userController from "../controller/userController";
-import register from "../validator/register";
+/** @format */
 
+import { Router } from 'express';
+import userController from '../controller/userController';
+import register from '../validator/register';
 
+const router = Router();
 
-const router = Router()
+// user Get route
+router.get('/', userController.allUser);
 
-// user Get route 
-router.get('/', userController.allUser)
-
-router.get('/register',userController.regiForm)
-// user register route 
-router.post('/register', register.registerRules(),register.validate , userController.create)
+router.get('/register', userController.regiForm);
+// user register route
+router.post(
+    '/register',
+    register.registerRules(),
+    register.validate,
+    userController.create,
+);
 
 router.get('/login', userController.loginForm);
 
-// user login route 
-router.post('/login',register.loginRules(),register.validate, userController.login)
+// user login route
+router.post(
+    '/login',
+    register.loginRules(),
+    register.validate,
+    userController.login,
+);
 
-// user Dashboar 
-router.get('/dashboard/:userId',userController.dashboard)
-export default router
-
+// user Dashboar
+router.get('/dashboard/:userId', userController.dashboard);
+export default router;

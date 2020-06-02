@@ -17,7 +17,8 @@ router.post('/:uid', profileController.create)
 
 // Edit profile details
 router.get('/edit/:pid', profileController.editForm)
-router.post('/edit/:pid',profileController.edit)
+router.post('/edit/:pid', profileController.edit)
+
 //To view single user Profile
 router.get('/user/:uid',profileController.singleProfile)
 
@@ -42,6 +43,5 @@ router.post(
 	);
 
 // Delete profile
-
     router.post('/delete/:uid',profileController.deleteProfile)
 export default router

@@ -77,16 +77,6 @@ const edit = async (req,res) => {
 			? skills
 			: skills.split(',').map((skill) => ' ' + skill.trim());
 		const socialData = { youtube, twitter, instagram, linkedin, facebook };
-		// const profileData = {
-		// 	company,
-		// 	website,
-		// 	location,
-		// 	skills: skillsData,
-		// 	bio,
-		// 	status,
-		// 	githubusername,
-		// 	social: socialData,
-    // };
     const profile = await Profile.findOneAndUpdate(
 			{ _id: pid },
 			{
@@ -125,9 +115,8 @@ const singleProfile = async (req,res) => {
   const uid = req.params.uid
   try {
     // const uid = User._id
-    const profile = await Profile.findOne({ user: uid }).populate('users',['firstName','avatar'])
-    res.render('singleProfile',{profile: profile})
-    // res.json(profile)
+    const profile = await Profile.findOne({ user: uid }).populate('user',['firstName','lastName','avatar'])
+    res.render('singleProfile', { profile })
   } catch (error) {
     res.json(error)
   }
